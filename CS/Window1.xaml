@@ -24,15 +24,15 @@
                             </dxc:AreaSeries2D.Points>
                         </dxc:AreaSeries2D>
                     </dxc:XYDiagram2D.Series>
-                   <!--region #SideMarginsEnabled-->
+                   <!--region #RangeSideMargins-->
                    <dxc:XYDiagram2D.AxisX>
                         <dxc:AxisX2D >
-                            <dxc:AxisX2D.Range>
-                                <dxc:AxisRange SideMarginsEnabled="True" />
-                            </dxc:AxisX2D.Range>
+                            <dxc:AxisX2D.WholeRange>
+                                <dxc:Range AutoSideMargins="False" SideMarginsValue="0"/>
+                            </dxc:AxisX2D.WholeRange>
                         </dxc:AxisX2D>
                     </dxc:XYDiagram2D.AxisX>
-                   <!--endregion #SideMarginsEnabled-->
+                    <!--endregion #RangeSideMargins-->
                 </dxc:XYDiagram2D>
             </dxc:ChartControl.Diagram>
             <dxc:ChartControl.Legend>
