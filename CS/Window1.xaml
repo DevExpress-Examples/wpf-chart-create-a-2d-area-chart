@@ -1,43 +1,45 @@
-<Window x:Class="Area2DChart.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+<Window x:Class="Area2DChart.Window1" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" 
-        Title="Window1" Height="350" Width="620">
+        xmlns:local="clr-namespace:Area2DChart"
+        Title="Window1" Height="420" Width="690">
+    <Window.DataContext>
+        <local:ChartViewModel/>
+    </Window.DataContext>
     <Grid>
-        <dxc:ChartControl Name="chartControl1">
-            <dxc:ChartControl.Diagram>
-                <dxc:XYDiagram2D>
-                    <dxc:XYDiagram2D.Series>
-                        <dxc:AreaSeries2D DisplayName="First Series" Transparency="0.5">
-                            <dxc:AreaSeries2D.Points>
-                                <dxc:SeriesPoint Argument="A" Value="1" />
-                                <dxc:SeriesPoint Argument="B" Value="3" />
-                                <dxc:SeriesPoint Argument="C" Value="7" />
-                                <dxc:SeriesPoint Argument="D" Value="4" />
-                            </dxc:AreaSeries2D.Points>
+        <dxc:ChartControl>
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="Outside Vendor Costs" HorizontalAlignment="Center"/>
+            </dxc:ChartControl.Titles>
+            <dxc:XYDiagram2D SeriesItemsSource="{Binding Data}">
+                <dxc:XYDiagram2D.SeriesItemTemplate>
+                    <DataTemplate>
+                        <dxc:AreaSeries2D DisplayName="{Binding Name}" 
+                                          DataSource="{Binding Values}"
+                                          ArgumentDataMember="Argument"
+                                          ValueDataMember="Value" 
+                                          Transparency="0.5" 
+                                          MarkerVisible="True"
+                                          MarkerSize="10">
+                            <dxc:AreaSeries2D.MarkerModel>
+                                <dxc:CircleMarker2DModel/>
+                            </dxc:AreaSeries2D.MarkerModel>
                         </dxc:AreaSeries2D>
-                        <dxc:AreaSeries2D DisplayName="Second Series" Transparency="0.5">
-                            <dxc:AreaSeries2D.Points>
-                                <dxc:SeriesPoint Argument="A" Value="2" />
-                                <dxc:SeriesPoint Argument="B" Value="2" />
-                                <dxc:SeriesPoint Argument="C" Value="5" />
-                                <dxc:SeriesPoint Argument="D" Value="4" />
-                            </dxc:AreaSeries2D.Points>
-                        </dxc:AreaSeries2D>
-                    </dxc:XYDiagram2D.Series>
-                   <!--region #RangeSideMargins-->
-                   <dxc:XYDiagram2D.AxisX>
-                        <dxc:AxisX2D >
-                            <dxc:AxisX2D.WholeRange>
-                                <dxc:Range AutoSideMargins="False" SideMarginsValue="0"/>
-                            </dxc:AxisX2D.WholeRange>
-                        </dxc:AxisX2D>
-                    </dxc:XYDiagram2D.AxisX>
-                    <!--endregion #RangeSideMargins-->
-                </dxc:XYDiagram2D>
-            </dxc:ChartControl.Diagram>
-            <dxc:ChartControl.Legend>
-                <dxc:Legend />
-            </dxc:ChartControl.Legend>
+                    </DataTemplate>
+                </dxc:XYDiagram2D.SeriesItemTemplate>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D>
+                        <dxc:AxisX2D.WholeRange>
+                            <dxc:Range SideMarginsValue="0.5" 
+                                       AutoSideMargins="False"/>
+                        </dxc:AxisX2D.WholeRange>
+                        <dxc:AxisX2D.DateTimeScaleOptions>
+                            <dxc:ManualDateTimeScaleOptions MeasureUnit="Year"/>
+                        </dxc:AxisX2D.DateTimeScaleOptions>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+            </dxc:XYDiagram2D>
         </dxc:ChartControl>
     </Grid>
 </Window>
